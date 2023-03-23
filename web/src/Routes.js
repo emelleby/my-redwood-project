@@ -14,9 +14,11 @@ import PrelineLayout from 'src/layouts/PrelineLayout'
 import ScaffoldLayout from 'src/layouts/ScaffoldLayout'
 import TestLayout from 'src/layouts/TestLayout'
 
+import { useAuth } from './auth'
+
 const Routes = () => {
   return (
-    <Router>
+    <Router useAuth={useAuth}>
       <Set wrap={PrelineLayout}>
         <Route path="/preline" page={PrelinePage} name="preline" />
       </Set>
@@ -31,10 +33,10 @@ const Routes = () => {
         <Route path="/rq-superheroes" page={RQSuperheroesPage} name="rqSuperheroes" />
         <Route path="/superheroes" page={SuperheroesPage} name="superheroes" />
         <Set wrap={ScaffoldLayout} title="Posts" titleTo="posts" buttonLabel="New Post" buttonTo="newPost">
-          <Route path="/posts/new" page={PostNewPostPage} name="newPost" />
-          <Route path="/posts/{id:Int}/edit" page={PostEditPostPage} name="editPost" />
-          <Route path="/posts/{id:Int}" page={PostPostPage} name="post" />
-          <Route path="/posts" page={PostPostsPage} name="posts" />
+          <Route path="/admin/posts/new" page={PostNewPostPage} name="newPost" />
+          <Route path="/admin/posts/{id:Int}/edit" page={PostEditPostPage} name="editPost" />
+          <Route path="/admin/posts/{id:Int}" page={PostPostPage} name="post" />
+          <Route path="/admin/posts" page={PostPostsPage} name="posts" />
         </Set>
       </Set>
 

@@ -48,7 +48,7 @@ const TestLayout = ({ children }) => {
             <h1>Post Admin</h1>
           </Link>
           <Link to={routes.demo()}>
-            <h1>Demo</h1>
+            <h1 className="text-xl">Demo</h1>
           </Link>
           <Link to={routes.grid()}>
             <h1>Grid</h1>
