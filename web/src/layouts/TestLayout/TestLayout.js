@@ -1,8 +1,12 @@
 import { useState } from 'react'
 
 import { Link, routes } from '@redwoodjs/router'
+
+import { useAuth } from 'src/auth'
+
 const TestLayout = ({ children }) => {
   const [open, setOpen] = useState(true)
+  const { isAuthenticated, currentUser, logOut } = useAuth()
   // grid-cols-[80px_auto] grid-rows-[3.5rem_auto]
 
   return (
@@ -43,24 +47,39 @@ const TestLayout = ({ children }) => {
           }`}
           onClick={() => setOpen(!open)}
         />
-        <nav className="sticky bg-teal-600 p-3 text-slate-100 grid-in-sidebar">
-          <Link to={routes.posts()}>
-            <h1>Post Admin</h1>
-          </Link>
-          <Link to={routes.demo()}>
-            <h1 className="text-xl">Demo</h1>
-          </Link>
-          <Link to={routes.grid()}>
-            <h1>Grid</h1>
-          </Link>
-          <Link to={routes.rqSuperheroes()}>
-            <h1>RqSuperheroes</h1>
-          </Link>
-          <Link to={routes.superheroes()}>
-            <h1>Superheroes</h1>
-          </Link>
-          <Link to={routes.contact()}>Contact</Link>
-        </nav>
+        <div className="flex-between sticky flex flex-col bg-teal-600 p-3 text-slate-100 grid-in-sidebar">
+          <nav>
+            <Link to={routes.posts()}>
+              <h1>Post Admin</h1>
+            </Link>
+            <Link to={routes.demo()}>
+              <h1 className="text-xl">Demo</h1>
+            </Link>
+            <Link to={routes.grid()}>
+              <h1>Grid</h1>
+            </Link>
+            <Link to={routes.rqSuperheroes()}>
+              <h1>RqSuperheroes</h1>
+            </Link>
+            <Link to={routes.superheroes()}>
+              <h1>Superheroes</h1>
+            </Link>
+            <Link to={routes.contact()}>Contact</Link>
+          </nav>
+          <div>
+            {isAuthenticated ? (
+              <div className="flex-between sticky flex flex-col">
+                <span className="text-sm">Logged in as {currentUser.id}</span>{' '}
+                <button type="button" onClick={logOut}>
+                  Logout
+                </button>
+              </div>
+            ) : (
+              <Link to={routes.login()}>Login</Link>
+            )}
+          </div>
+        </div>
+
         <main className="overflow-y-scroll bg-teal-50 p-4 grid-in-main">
           {children}
         </main>

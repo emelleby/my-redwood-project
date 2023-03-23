@@ -7,7 +7,7 @@
 // 'src/pages/HomePage/HomePage.js'         -> HomePage
 // 'src/pages/Admin/BooksPage/BooksPage.js' -> AdminBooksPage
 
-import { Router, Route, Set } from '@redwoodjs/router'
+import { Private, Router, Route, Set } from '@redwoodjs/router'
 
 import AppLayout from 'src/layouts/AppLayout'
 import PrelineLayout from 'src/layouts/PrelineLayout'
@@ -19,6 +19,10 @@ import { useAuth } from './auth'
 const Routes = () => {
   return (
     <Router useAuth={useAuth}>
+      <Route path="/login" page={LoginPage} name="login" />
+      <Route path="/signup" page={SignupPage} name="signup" />
+      <Route path="/forgot-password" page={ForgotPasswordPage} name="forgotPassword" />
+      <Route path="/reset-password" page={ResetPasswordPage} name="resetPassword" />
       <Set wrap={PrelineLayout}>
         <Route path="/preline" page={PrelinePage} name="preline" />
       </Set>
@@ -32,12 +36,14 @@ const Routes = () => {
         <Route path="/rq-home" page={RQHomePage} name="rqHome" />
         <Route path="/rq-superheroes" page={RQSuperheroesPage} name="rqSuperheroes" />
         <Route path="/superheroes" page={SuperheroesPage} name="superheroes" />
-        <Set wrap={ScaffoldLayout} title="Posts" titleTo="posts" buttonLabel="New Post" buttonTo="newPost">
-          <Route path="/admin/posts/new" page={PostNewPostPage} name="newPost" />
-          <Route path="/admin/posts/{id:Int}/edit" page={PostEditPostPage} name="editPost" />
-          <Route path="/admin/posts/{id:Int}" page={PostPostPage} name="post" />
-          <Route path="/admin/posts" page={PostPostsPage} name="posts" />
-        </Set>
+        <Private unauthenticated="superheroes">
+          <Set wrap={ScaffoldLayout} title="Posts" titleTo="posts" buttonLabel="New Post" buttonTo="newPost">
+            <Route path="/admin/posts/new" page={PostNewPostPage} name="newPost" />
+            <Route path="/admin/posts/{id:Int}/edit" page={PostEditPostPage} name="editPost" />
+            <Route path="/admin/posts/{id:Int}" page={PostPostPage} name="post" />
+            <Route path="/admin/posts" page={PostPostsPage} name="posts" />
+          </Set>
+        </Private>
       </Set>
 
       <Set wrap={AppLayout}>
