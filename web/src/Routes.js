@@ -21,8 +21,11 @@ const Routes = () => {
         <Route path="/preline" page={PrelinePage} name="preline" />
       </Set>
       <Set wrap={TestLayout}>
-        <Route path="/grid" page={GridPage} name="grid" />
+        <Route path="/article/{id:Int}" page={ArticlePage} name="article" />
+        <Route path="/contact" page={ContactPage} name="contact" />
         <Route path="/demo" page={DemoPage} name="demo" />
+        <Route path="/grid" page={GridPage} name="grid" />
+
         <Route path="/rqHome" page={RQHomePage} name="rqhome" />
         <Route path="/rq-home" page={RQHomePage} name="rqHome" />
         <Route path="/rq-superheroes" page={RQSuperheroesPage} name="rqSuperheroes" />

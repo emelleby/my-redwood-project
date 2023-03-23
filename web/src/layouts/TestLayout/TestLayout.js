@@ -56,7 +56,10 @@ const TestLayout = ({ children }) => {
           <Link to={routes.rqSuperheroes()}>
             <h1>RqSuperheroes</h1>
           </Link>
-          <Link to={routes.superheroes()}>Superheroes</Link>
+          <Link to={routes.superheroes()}>
+            <h1>Superheroes</h1>
+          </Link>
+          <Link to={routes.contact()}>Contact</Link>
         </nav>
         <main className="overflow-y-scroll bg-teal-50 p-4 grid-in-main">
           {children}
