@@ -1,19 +1,27 @@
-import { Link, routes } from '@redwoodjs/router'
+import { Form, TextField, TextAreaField, Submit } from '@redwoodjs/forms'
 import { MetaTags } from '@redwoodjs/web'
 
 const ContactPage = () => {
+  const onSubmit = (data) => {
+    console.log(data)
+  }
+
   return (
     <>
       <MetaTags title="Contact" description="Contact page" />
 
-      <h1>ContactPage</h1>
-      <p>
-        Find me in <code>./web/src/pages/ContactPage/ContactPage.js</code>
-      </p>
-      <p>
-        My default route is named <code>contact</code>, link to me with `
-        <Link to={routes.contact()}>Contact</Link>`
-      </p>
+      <Form onSubmit={onSubmit}>
+        <label htmlFor="name">Name</label>
+        <TextField name="name" />
+
+        <label htmlFor="email">Email</label>
+        <TextField name="email" />
+
+        <label htmlFor="message">Message</label>
+        <TextAreaField name="message" />
+
+        <Submit>Save</Submit>
+      </Form>
     </>
   )
 }
