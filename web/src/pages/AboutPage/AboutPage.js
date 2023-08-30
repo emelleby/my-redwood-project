@@ -47,7 +47,7 @@ const AboutPage = () => {
     setPopoverShow(false)
   }
   return (
-    <>
+    <div className="md:container">
       <MetaTags title="About" description="About page" />
 
       <h1>The AboutPage</h1>
@@ -229,7 +229,7 @@ const AboutPage = () => {
           placeholder="you@site.com"
         />
       </div>
-    </>
+    </div>
   )
 }
 

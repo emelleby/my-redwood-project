@@ -2,6 +2,7 @@ import { Link, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 
 import Modal from '../../components/modal.js'
+import Modal3 from '../../components/Modal3/Modal3.js'
 import ImageUploader from '../../components/upload2.js'
 
 const UploadPage = () => {
@@ -18,7 +19,10 @@ const UploadPage = () => {
         <Link to={routes.upload()}>Upload</Link>`
       </p>
       <ImageUploader />
+
       <Modal />
+
+      <Modal3 />
     </>
   )
 }

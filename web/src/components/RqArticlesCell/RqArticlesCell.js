@@ -19,7 +19,6 @@ function usePosts() {
               author
               createdAt
             }
-          }
         `
       )
       return data

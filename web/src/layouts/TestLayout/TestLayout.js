@@ -16,10 +16,10 @@ const TestLayout = ({ children }) => {
           open ? 'grid-cols-layout' : 'grid-cols-[80px_auto]'
         } wrapper grid h-screen grid-rows-layout duration-300 grid-areas-layout`}
       >
-        <header className="sticky z-10 flex items-center bg-teal-300 px-6 grid-in-header">
+        <header className="flex items-center bg-teal-300 px-6 grid-in-header">
           <h1>GridPage header H1</h1>
         </header>
-        <div className="bg-teal-600 p-4 grid-in-logo">
+        <section className="bg-teal-600 p-4 grid-in-logo">
           <Link to={routes.home()}>
             <div className="flex items-center gap-x-4">
               <img
@@ -38,7 +38,7 @@ const TestLayout = ({ children }) => {
               </h1>
             </div>
           </Link>
-        </div>
+        </section>
         <img
           src="../assets/control.png"
           alt="collapse menu"
@@ -47,7 +47,7 @@ const TestLayout = ({ children }) => {
           }`}
           onClick={() => setOpen(!open)}
         />
-        <div className="flex-between sticky flex flex-col bg-teal-600 p-3 text-slate-100 grid-in-sidebar">
+        <aside className="flex-between flex flex-col bg-teal-600 p-3 text-slate-100 grid-in-sidebar">
           <nav>
             <Link to={routes.posts()}>
               <h1>Post Admin</h1>
@@ -64,9 +64,11 @@ const TestLayout = ({ children }) => {
             <Link to={routes.superheroes()}>
               <h1>Superheroes</h1>
             </Link>
-            <Link to={routes.contact()}>Contact</Link>
+            <Link to={routes.contact()}>
+              <h1>Contact</h1>
+            </Link>
           </nav>
-          <div>
+          <div className="bottom-0">
             {isAuthenticated ? (
               <div className="flex-between sticky flex flex-col">
                 <span className="text-sm">Logged in as {currentUser.id}</span>{' '}
@@ -78,7 +80,7 @@ const TestLayout = ({ children }) => {
               <Link to={routes.login()}>Login</Link>
             )}
           </div>
-        </div>
+        </aside>
 
         <main className="overflow-y-scroll bg-teal-50 p-4 grid-in-main">
           {children}

@@ -3462,6 +3462,27 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@headlessui/react@npm:^1.7.17":
+  version: 1.7.17
+  resolution: "@headlessui/react@npm:1.7.17"
+  dependencies:
+    client-only: ^0.0.1
+  peerDependencies:
+    react: ^16 || ^17 || ^18
+    react-dom: ^16 || ^17 || ^18
+  checksum: a17d819e8c7aca764479eba1bd1bfe28d9f99ce4c16a296986f902ee040e57e242bd21d525570118c318cf1f013c9b56c6568980686774ca1881e82ca5cdeebe
+  languageName: node
+  linkType: hard
+
+"@heroicons/react@npm:^2.0.18":
+  version: 2.0.18
+  resolution: "@heroicons/react@npm:2.0.18"
+  peerDependencies:
+    react: ">= 16"
+  checksum: 3cef7f67c65f8b00dc4f23788e468e661a24bd805f80e3b5514a986d69c91ef05407cf50078691573eced47147db87a9bd00cc165e4fecd2a9657cbaf3eaafb5
+  languageName: node
+  linkType: hard
+
 "@humanwhocodes/config-array@npm:^0.11.8":
   version: 0.11.8
   resolution: "@humanwhocodes/config-array@npm:0.11.8"
@@ -6292,6 +6313,17 @@ __metadata:
   dependencies:
     defer-to-connect: ^1.0.1
   checksum: 0594140e027ce4e98970c6d176457fcbff80900b1b3101ac0d08628ca6d21d70e0b94c6aaada94d4f76c1423fcc7195af83da145ce0fd556fc0595ca74a17b8b
+  languageName: node
+  linkType: hard
+
+"@tailwindcss/forms@npm:^0.5.6":
+  version: 0.5.6
+  resolution: "@tailwindcss/forms@npm:0.5.6"
+  dependencies:
+    mini-svg-data-uri: ^1.2.3
+  peerDependencies:
+    tailwindcss: ">=3.0.0 || >= 3.0.0-alpha.1"
+  checksum: 077f7be640a3d97c0a543bc60c06823c07fdb43928c027d65638ffe74e33037ce5d503609048e14049e4ed578dad508058a8aef0aaf38453c45bfd9c0623dacb
   languageName: node
   linkType: hard
 
@@ -10439,6 +10471,13 @@ __metadata:
   version: 3.0.0
   resolution: "cli-width@npm:3.0.0"
   checksum: 125a62810e59a2564268c80fdff56c23159a7690c003e34aeb2e68497dccff26911998ff49c33916fcfdf71e824322cc3953e3f7b48b27267c7a062c81348a9a
+  languageName: node
+  linkType: hard
+
+"client-only@npm:^0.0.1":
+  version: 0.0.1
+  resolution: "client-only@npm:0.0.1"
+  checksum: 9d6cfd0c19e1c96a434605added99dff48482152af791ec4172fb912a71cff9027ff174efd8cdb2160cc7f377543e0537ffc462d4f279bc4701de3f2a3c4b358
   languageName: node
   linkType: hard
 
@@ -18084,7 +18123,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mini-svg-data-uri@npm:^1.4.3":
+"mini-svg-data-uri@npm:^1.2.3, mini-svg-data-uri@npm:^1.4.3":
   version: 1.4.4
   resolution: "mini-svg-data-uri@npm:1.4.4"
   bin:
@@ -21880,9 +21919,12 @@ __metadata:
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
     "@floating-ui/react": ^0.19.0
+    "@headlessui/react": ^1.7.17
+    "@heroicons/react": ^2.0.18
     "@redwoodjs/auth-dbauth-setup": 4.3.1
     "@redwoodjs/core": 4.3.1
     "@savvywombat/tailwindcss-grid-areas": ^3.0.0
+    "@tailwindcss/forms": ^0.5.6
     "@tanstack/react-query": ^4.28.0
     "@tanstack/react-query-devtools": ^4.28.0
     express: ^4.18.2
@@ -21892,6 +21934,8 @@ __metadata:
     graphql-request: ^5.2.0
     mongodb: ^5.0.0
     prettier-plugin-tailwindcss: ^0.2.1
+    web: "workspace:^"
+    workspace: ^0.0.1-preview.1
   languageName: unknown
   linkType: soft
 
@@ -24953,7 +24997,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"web@workspace:web":
+"web@workspace:^, web@workspace:web":
   version: 0.0.0-use.local
   resolution: "web@workspace:web"
   dependencies:
@@ -24964,6 +25008,7 @@ __metadata:
     "@redwoodjs/router": 4.3.1
     "@redwoodjs/web": 4.3.1
     "@savvywombat/tailwindcss-grid-areas": ^3.0.0
+    "@tailwindcss/forms": ^0.5.6
     autoprefixer: ^10.4.13
     express: ^4.18.2
     flowbite: ^1.6.2
@@ -25513,6 +25558,13 @@ __metadata:
   dependencies:
     microevent.ts: ~0.1.1
   checksum: 986406dbed4a2fd25d21e05e5a16a2db5051735df4011848366bb9488ecf19f44b43a90072171e509580fafd0565a7759543966496b8c18322efa5440dea1e6c
+  languageName: node
+  linkType: hard
+
+"workspace@npm:^0.0.1-preview.1":
+  version: 0.0.1-preview.1
+  resolution: "workspace@npm:0.0.1-preview.1"
+  checksum: 8c2a2d67ff7d02edbbdde587ca010e9e1fbd57e96faf8ce91092ad4ca94ff61f26342de113152e8e890e24a808376aef4453a9f99c5d96710e0fad26e39f21bf
   languageName: node
   linkType: hard
 

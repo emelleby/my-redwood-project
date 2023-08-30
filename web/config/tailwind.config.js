@@ -47,5 +47,6 @@ module.exports = {
   plugins: [
     require('flowbite/plugin'),
     require('@savvywombat/tailwindcss-grid-areas'),
+    // require('@tailwindcss/forms'),
   ],
 }
