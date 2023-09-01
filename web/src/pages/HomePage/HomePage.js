@@ -31,7 +31,7 @@ const HomePage = () => {
   return (
     <>
       <MetaTags title="Home" description="Home page" />
-      <section className="bg-teal-200 px-5 py-3">
+      <section className="bg-white px-5 py-3">
         <h1>HomePage here</h1>
         <p>
           Find me in <code>./web/src/pages/HomePage/HomePage.js</code>

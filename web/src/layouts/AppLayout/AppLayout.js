@@ -9,7 +9,7 @@ import Dropdown from '../../components/Dropdown/Dropdown'
 const AppLayout = ({ children }) => {
   const [open, setOpen] = useState(true)
   const Menus = [
-    { title: 'Dashboard', src: 'Icon-dash', link: routes.home() },
+    { title: 'Dashboard', src: 'Icon-dash', link: routes.dashboard() },
     { title: 'Upload', src: 'Chat', link: routes.upload() },
     { title: 'Accounts', src: 'User', link: routes.about(), gap: true },
     { title: 'Shop ', src: 'Calendar', link: routes.shop() },
