@@ -8,6 +8,7 @@ import Dropdown from '../../components/Dropdown/Dropdown'
 
 const AppLayout = ({ children }) => {
   const [open, setOpen] = useState(true)
+
   const Menus = [
     { title: 'Dashboard', src: 'Icon-dash', link: routes.dashboard() },
     { title: 'Upload', src: 'Chat', link: routes.upload() },
@@ -26,7 +27,27 @@ const AppLayout = ({ children }) => {
           open ? 'grid-cols-layout' : 'grid-cols-[80px_auto]'
         } wrapper grid h-screen grid-rows-layout duration-300 grid-areas-layout`}
       >
-        <header className="flex items-center bg-teal-300 px-6 grid-in-header">
+        <section className="bg-sky-700 p-4 grid-in-logo">
+          <Link to={routes.home()}>
+            <div className="flex items-center gap-x-4">
+              <img
+                src="../assets/Logo-2links-40.png"
+                className={`cursor-pointer duration-500 ${
+                  open && 'rotate-[360deg]'
+                }`}
+              />
+
+              <h1
+                className={`origin-left text-xl font-medium text-slate-100 duration-200 ${
+                  !open && 'scale-0'
+                }`}
+              >
+                Scope321
+              </h1>
+            </div>
+          </Link>
+        </section>
+        <header className="z-10 flex items-center bg-white px-6 shadow-md shadow-sky-200 grid-in-header">
           <img
             src="../assets/control.png"
             className={`relative right-10 h-7 w-7 cursor-pointer rounded-full
@@ -75,28 +96,8 @@ const AppLayout = ({ children }) => {
             </div>
           </div>
         </header>
-        <section className="bg-[#085952] p-4 grid-in-logo">
-          <Link to={routes.home()}>
-            <div className="flex items-center gap-x-4">
-              <img
-                src="../assets/Logo-2links-40.png"
-                className={`cursor-pointer duration-500 ${
-                  open && 'rotate-[360deg]'
-                }`}
-              />
 
-              <h1
-                className={`origin-left text-xl font-medium text-slate-100 duration-200 ${
-                  !open && 'scale-0'
-                }`}
-              >
-                Scope321
-              </h1>
-            </div>
-          </Link>
-        </section>
-
-        <aside className="flex-between flex flex-col bg-[#085952] p-3 text-slate-100 grid-in-sidebar">
+        <aside className="flex-between flex flex-col bg-sky-700 p-3 text-slate-100 grid-in-sidebar">
           <ul className="pt-6">
             {Menus.map((Menu, index) => (
               <Link key={index} to={Menu.link}>
@@ -107,7 +108,21 @@ const AppLayout = ({ children }) => {
                     index === 0 && 'bg-light-white'
                   } `}
                 >
-                  <img src={`../assets/${Menu.src}.png`} />
+                  {/* <img src={`../assets/${Menu.src}.png`} /> */}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={2}
+                    stroke="currentColor"
+                    className="h-6 w-6 text-sky-200"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
+                    />
+                  </svg>
                   <span
                     className={`${!open && 'hidden'} origin-left duration-200`}
                   >

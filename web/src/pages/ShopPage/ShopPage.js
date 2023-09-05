@@ -101,8 +101,9 @@ const ShopPage = () => {
   return (
     <>
       <MetaTags title="Shop" description="Shop page" />
-
-      <ProductList products={products} />
+      <div className="bg-slate-100">
+        <ProductList products={products} />
+      </div>
     </>
   )
 }
