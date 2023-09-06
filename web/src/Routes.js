@@ -15,6 +15,7 @@ import ScaffoldLayout from 'src/layouts/ScaffoldLayout'
 import TestLayout from 'src/layouts/TestLayout'
 
 import { useAuth } from './auth'
+import TailwindLayout from './layouts/TailwindLayout/TailwindLayout'
 
 const Routes = () => {
   return (
@@ -53,6 +54,9 @@ const Routes = () => {
         <Route path="/sidepanel" page={SidepanelPage} name="sidepanel" />
         <Route path="/upload" page={UploadPage} name="upload" />
         <Route path="/shop" page={ShopPage} name="shop" />
+      </Set>
+      <Set wrap={TailwindLayout}>
+        <Route path="/tailwind" page={TailwindPage} name="tailwind" />
       </Set>
       <Route notfound page={NotFoundPage} />
     </Router>

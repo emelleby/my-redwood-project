@@ -2,6 +2,9 @@
 /* eslint-disable jsx-a11y/alt-text */
 import { useState } from 'react'
 
+import { Disclosure } from '@headlessui/react'
+import { ChevronRightIcon } from '@heroicons/react/20/solid'
+
 import { Link, routes } from '@redwoodjs/router'
 
 import Dropdown from '../../components/Dropdown/Dropdown'
@@ -13,12 +16,25 @@ const AppLayout = ({ children }) => {
     { title: 'Dashboard', src: 'Icon-dash', link: routes.dashboard() },
     { title: 'Upload', src: 'Chat', link: routes.upload() },
     { title: 'Accounts', src: 'User', link: routes.about(), gap: true },
-    { title: 'Shop ', src: 'Calendar', link: routes.shop() },
+    {
+      title: 'Shop ',
+      src: 'Calendar',
+      link: routes.shop(),
+      children: [
+        { name: 'Scope1', href: '#' },
+        { name: 'Scope 2', href: '#' },
+        { name: 'Scope 3', href: '#' },
+        { name: 'All', href: '#' },
+      ],
+    },
     { title: 'Search', src: 'Search', link: routes.sidepanel() },
     { title: 'Builder', src: 'Chart', link: routes.demo() },
     { title: 'Files ', src: 'Folder', link: routes.upload(), gap: true },
     { title: 'Preline', src: 'Setting', link: routes.preline() },
   ]
+  function classNames(...classes) {
+    return classes.filter(Boolean).join(' ')
+  }
 
   return (
     <>
