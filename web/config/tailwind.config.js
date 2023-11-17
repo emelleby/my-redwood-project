@@ -42,6 +42,9 @@ module.exports = {
         h1: '#1a202c', // set the text color for h1 to #1a202c
       },
       colors: {
+        yellow: {
+          500: '#eab308',
+        },
         // light mode
         tremor: {
           brand: {

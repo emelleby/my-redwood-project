@@ -9,6 +9,7 @@ import { Card } from 'flowbite-react'
 import { Link, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 
+import Form from 'src/components/Form/Form.js'
 import Pop from 'src/components/pop'
 
 import Modal2 from '../../components/modal2.js'
@@ -228,6 +229,7 @@ const AboutPage = () => {
           className="text-md block w-full rounded-md border-gray-200 py-2 px-4 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-700 dark:bg-slate-900 dark:text-gray-400"
           placeholder="you@site.com"
         />
+        <Form />
       </div>
     </div>
   )

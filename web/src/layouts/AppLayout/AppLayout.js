@@ -84,7 +84,7 @@ const AppLayout = ({ children }) => {
               </div>
               <div className=""> | </div>
               <div className="">Support</div>
-              <div className="">
+              <div className="hidden">
                 <input
                   type="text"
                   className="searchInput rounded-lg"
