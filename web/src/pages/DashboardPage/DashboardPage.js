@@ -195,20 +195,47 @@ const DashboardPage = () => {
       title: 'Scope 1',
       co2e: totalCo2e * 0.1381,
       percent: 13.81,
+      color: ['rose', 'slate', 'slate'],
     },
     {
       id: 2,
       title: 'Scope 2',
       co2e: totalCo2e * 0.1734,
       percent: 17.34,
+      color: ['sky', 'neutral', 'neutral'],
     },
     {
       id: 3,
       title: 'Scope 3',
       co2e: totalCo2e * 0.6885,
       percent: 68.85,
+      color: ['amber', 'slate', 'slate'],
     },
   ]
+
+  const createScopesData = (data, scope) => {
+    if (scope === 1)
+      return [
+        { percent: data[0].percent },
+        { percent: data[1].percent },
+        { percent: data[2].percent },
+      ]
+    if (scope === 2)
+      return [
+        { percent: data[1].percent },
+        { percent: 100 - data[1].percent },
+        { percent: 0 },
+      ]
+
+    if (scope === 3)
+      return [
+        { percent: data[2].percent },
+        { percent: 100 - data[2].percent },
+        { percent: 0 },
+      ]
+    //console.log(dataToReturn)
+    //return dataToReturn
+  }
 
   console.log(co2eData)
 
@@ -256,6 +283,15 @@ const DashboardPage = () => {
     return <div className="font-bold">{value + ' %'}</div>
   }
 
+  const valueFormat = (number) => {
+    console.log(number)
+    return `${new Intl.NumberFormat('no-NO', {
+      maximumFractionDigits: 1,
+    })
+      .format(number)
+      .toString()} %`
+  }
+
   const intensityScale = (factor = 15, industry = 12) => {
     const highEnd = industry * 2
     const lowEnd = industry / 2
@@ -279,9 +315,10 @@ const DashboardPage = () => {
 
         <h1 className="mb-5 text-2xl font-bold text-slate-900">Dashboard</h1>
 
-        <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3">
+        <div className="grid auto-rows-min grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3">
           {/* Your grid items go here */}
-          <div className="flex flex-col gap-3">
+
+          <div className="first flex flex-col gap-3">
             <Card
               className="mx-auto min-h-0 self-start"
               decoration="top"
@@ -327,7 +364,12 @@ const DashboardPage = () => {
             <div className="w-full">
               <Flex flexDirection="col" className="gap-3">
                 {co2eData.map((item) => (
-                  <Card key={item.id} className="gap-3">
+                  <Card
+                    key={item.id}
+                    decoration="top"
+                    decorationColor={item.color[0]}
+                    className="gap-3 py-3"
+                  >
                     <Flex className="w-full">
                       <Flex flexDirection="col" className="gap-2">
                         <Flex alignItems="start">
@@ -347,14 +389,14 @@ const DashboardPage = () => {
                         </Flex>
                       </Flex>
                       <DonutChart
-                        className="h-24 w-24"
-                        data={co2eData.item}
+                        className="h-28 w-28"
+                        data={createScopesData(co2eData, item.id)}
                         category="percent"
                         index="title"
                         variant="donut"
                         label={item.percent}
-                        valueFormatter={dataFormatter}
-                        colors={['rose', 'yellow', 'sky']}
+                        valueFormatter={valueFormat}
+                        colors={item.color}
                       />
                     </Flex>
                   </Card>
@@ -379,6 +421,7 @@ const DashboardPage = () => {
               />
             </Card>
           </div>
+
           <div className="categories flex flex-col gap-3 lg:-mt-10">
             <div className="ml-2 text-xl font-bold">Scope 3 categories</div>
             <div className="flex w-full gap-2 self-start">
@@ -412,7 +455,7 @@ const DashboardPage = () => {
                       className="space-x-3 truncate"
                     >
                       <Metric>{item.co2e}</Metric>
-                      <Text className="truncate">from</Text>
+                      <Text className="truncate">tons co2e</Text>
                       {/* <Text className="truncate font-medium">
                         {item.metricPrev}
                       </Text> */}
@@ -422,7 +465,8 @@ const DashboardPage = () => {
               </Flex>
             </div>
           </div>
-          <div className=" lg:col-span-2 xl:col-span-1 xl:-mt-10">
+
+          <div className=" lg:col-span-2 xl:col-span-1 xl:row-span-2 xl:-mt-10">
             {/* Nested grid for the four items */}
             <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-1">
               {/* Four items */}
@@ -473,7 +517,8 @@ const DashboardPage = () => {
               </div>
             </div>
           </div>
-          <div className="col-span-1 lg:col-span-2">
+
+          <div className="barchart col-span-1 lg:col-span-2">
             <Card>
               <Title>Newsletter revenue over time (USD)</Title>
               <AreaChart
@@ -486,50 +531,49 @@ const DashboardPage = () => {
               />
             </Card>
           </div>
-          <div className="lg:col-span-2 xl:col-span-1">
-            {/* Nested grid for the four items */}
-            <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 xl:grid-cols-1">
-              {/* Three items */}
 
-              {/* <Text className="text-lg font-bold">Manglende data</Text> */}
+          {/* Nested grid for the four items */}
 
-              <Callout
-                className="overflow-y-hidden ring-1 ring-sky-400"
-                title="Manglende data"
-                icon={ExclamationIcon}
-              >
-                Det er hovedsaklig to grunner til at vi ikke har data på disse.
-                Leverandøren har lagt ned virksomheten eller det er en
-                utenlandsleverandør som vi ikke har noen industrikode på.
-              </Callout>
-              <Callout
-                className="overflow-y-hidden ring-1 ring-sky-400"
-                title="Reiser"
-                icon={ExclamationIcon}
-              >
-                Det er viktig å få gode data på reisevirksomhet.
-                <p>
-                  <br />
-                  <Link>
-                    <span className="text-blue underline">
-                      Legg til ansattes pendling til og fra jobb
-                    </span>
-                  </Link>
-                </p>
-              </Callout>
-              <Callout
-                className="overflow-y-hidden ring-1 ring-sky-400"
-                title="Røde flagg"
-                icon={ExclamationIcon}
-              >
-                For at det skal bli best mulig rapportering har vi flagget noen
-                transaksjoner med rødt flagg. Disse bør du manuelt sjekke da det
-                er viktige føringer.
-              </Callout>
-            </div>
-          </div>
-          {/* Add more items as needed */}
+          {/* Three items */}
+
+          {/* <Text className="text-lg font-bold">Manglende data</Text> */}
+
+          <Callout
+            className="overflow-y-hidden ring-1 ring-sky-400"
+            title="Manglende data"
+            icon={ExclamationIcon}
+          >
+            Det er hovedsaklig to grunner til at vi ikke har data på disse.
+            Leverandøren har lagt ned virksomheten eller det er en
+            utenlandsleverandør som vi ikke har noen industrikode på.
+          </Callout>
+          <Callout
+            className="overflow-y-hidden ring-1 ring-sky-400"
+            title="Reiser"
+            icon={ExclamationIcon}
+          >
+            Det er viktig å få gode data på reisevirksomhet.
+            <p>
+              <br />
+              <Link>
+                <span className="text-blue underline">
+                  Legg til ansattes pendling til og fra jobb
+                </span>
+              </Link>
+            </p>
+          </Callout>
+          <Callout
+            className="overflow-y-hidden ring-1 ring-sky-400"
+            title="Røde flagg"
+            icon={ExclamationIcon}
+          >
+            For at det skal bli best mulig rapportering har vi flagget noen
+            transaksjoner med rødt flagg. Disse bør du manuelt sjekke da det er
+            viktige føringer.
+          </Callout>
         </div>
+
+        {/* Add more items as needed */}
 
         <style jsx="true">{`
           .recharts-tooltip-wrapper {
