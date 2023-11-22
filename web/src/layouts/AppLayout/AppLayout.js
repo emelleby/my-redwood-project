@@ -72,7 +72,7 @@ const AppLayout = ({ children }) => {
           />
           <div className="flex w-full justify-between">
             <div className="flex flex-row items-center">
-              <h1>Reporting year:</h1>
+              <h1 className="mr-2">Reporting year:</h1>
               <Dropdown />
             </div>
             <div className="flex items-center gap-4">
@@ -119,7 +119,7 @@ const AppLayout = ({ children }) => {
               <Link key={index} to={Menu.link}>
                 <li
                   key={index}
-                  className={`hover:bg-light-white text-md flex w-full cursor-pointer items-center gap-x-4 rounded-md p-2 text-slate-100
+                  className={`hover:bg-light-white text-md flex w-full cursor-pointer items-center gap-x-4 rounded-md p-2 text-slate-100 active:bg-sky-400
                 ${Menu.gap ? 'mt-4' : 'mt-2'} ${
                     index === 0 && 'bg-light-white'
                   } `}
@@ -131,7 +131,7 @@ const AppLayout = ({ children }) => {
                     viewBox="0 0 24 24"
                     strokeWidth={2}
                     stroke="currentColor"
-                    className="h-6 w-6 text-sky-200"
+                    className="h-6 w-6 text-sky-100"
                   >
                     <path
                       strokeLinecap="round"

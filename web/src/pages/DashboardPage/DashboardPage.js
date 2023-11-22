@@ -1,17 +1,15 @@
+import { DotsVerticalIcon } from '@heroicons/react/outline'
 import { CheckCircleIcon, ExclamationIcon } from '@heroicons/react/solid'
 import {
   Grid,
-  Col,
   Card,
   Callout,
   Title,
-  AreaChart,
   Metric,
+  Icon,
   Text,
   Flex,
-  ProgressBar,
   DonutChart,
-  BadgeDelta,
   Badge,
   BarChart,
   List,
@@ -55,14 +53,7 @@ const DashboardPage = () => {
   ]
   const cityNames = cities.map((city) => city.name)
   console.log(cityNames)
-  const data = [
-    {
-      Cat: 'Categories',
-      1: 2890,
-      2: 1400,
-      3: 4938,
-    },
-  ]
+
   const chartdata = [
     {
       date: 'Jan 22',
@@ -212,7 +203,7 @@ const DashboardPage = () => {
       color: ['amber', 'slate', 'slate'],
     },
   ]
-
+  const scopeNames = co2eData.map((scope) => scope.title)
   const createScopesData = (data, scope) => {
     if (scope === 1)
       return [
@@ -246,6 +237,93 @@ const DashboardPage = () => {
     { type: 'Non-renewable energy', value: 12245 },
   ]
 
+  const monthlyData = [
+    {
+      month: 'January',
+      'scope 1': 405.83,
+      'scope 2': 523.75,
+      'scope 3': 1964.92,
+      color: 'rose',
+    },
+    {
+      month: 'February',
+      'scope 1': 400.08,
+      'scope 2': 503.75,
+      'scope 3': 1990.67,
+      color: 'sky',
+    },
+    {
+      month: 'March',
+      'scope 1': 420.33,
+      'scope 2': 540.25,
+      'scope 3': 1925.58,
+      color: 'amber',
+    },
+    {
+      month: 'April',
+      'scope 1': 391.17,
+      'scope 2': 520.83,
+      'scope 3': 1990.83,
+      color: 'rose',
+    },
+    {
+      month: 'May',
+      'scope 1': 416.25,
+      'scope 2': 527.08,
+      'scope 3': 1951.17,
+      color: 'sky',
+    },
+    {
+      month: 'June',
+      'scope 1': 416.92,
+      'scope 2': 517.42,
+      'scope 3': 1960.17,
+      color: 'amber',
+    },
+    {
+      month: 'July',
+      'scope 1': 407.42,
+      'scope 2': 533.25,
+      'scope 3': 1945.5,
+      color: 'rose',
+    },
+    {
+      month: 'August',
+      'scope 1': 411.58,
+      'scope 2': 504.92,
+      'scope 3': 1978.08,
+      color: 'sky',
+    },
+    {
+      month: 'September',
+      'scope 1': 409,
+      'scope 2': 534.17,
+      'scope 3': 1951.33,
+      color: 'amber',
+    },
+    {
+      month: 'October',
+      'scope 1': 420.67,
+      'scope 2': 521.83,
+      'scope 3': 1952,
+      color: 'rose',
+    },
+    {
+      month: 'November',
+      'scope 1': 418.58,
+      'scope 2': 535.25,
+      'scope 3': 1940.67,
+      color: 'sky',
+    },
+    {
+      month: 'December',
+      'scope 1': 412.33,
+      'scope 2': 524.58,
+      'scope 3': 1991,
+      color: 'amber',
+    },
+  ]
+
   const energyLabels = energyData.map((source) => source.type)
 
   console.log(energyLabels)
@@ -277,10 +355,10 @@ const DashboardPage = () => {
   console.log(nameCo2eObject)
 
   const dataFormatter = () => {
-    return '$' + Intl.NumberFormat('us').format().toString()
+    return Intl.NumberFormat('us').format().toString()
   }
   const valueFormatter = (value) => {
-    return <div className="font-bold">{value + ' %'}</div>
+    return <div className="font-bold">{value}</div>
   }
 
   const valueFormat = (number) => {
@@ -290,6 +368,14 @@ const DashboardPage = () => {
     })
       .format(number)
       .toString()} %`
+  }
+  const format = (number) => {
+    console.log(number)
+    return `${new Intl.NumberFormat('no-NO', {
+      maximumFractionDigits: 1,
+    })
+      .format(number)
+      .toString()} tco2e`
   }
 
   const intensityScale = (factor = 15, industry = 12) => {
@@ -325,21 +411,45 @@ const DashboardPage = () => {
               decorationColor="emerald"
             >
               <Text className="mb-2 text-[18px] font-bold">
-                Total co2e emissions for Company name
+                Total emissions for Company name
               </Text>
               <div className="flex place-items-baseline">
                 <Metric>{Intl.NumberFormat('no-NO').format(totalCo2e)}</Metric>
                 <Text className="text-sm font-bold">
-                  <span className="pl-1">tons Co2e</span>
+                  <span className="pl-1">tCo2e</span>
                 </Text>
               </div>
             </Card>
-            <Card className="mx-auto" decoration="top" decorationColor="slate">
+            <Card className="mx-auto" decoration="left" decorationColor="slate">
               <Flex>
                 <Text className="text-[18px] font-bold">Carbon intensity</Text>
                 <Text className="text-sm font-bold">
-                  {intensityScale()[3]} Kg / tNOK
+                  {intensityScale()[3]} Kg/tNOK
                 </Text>
+                <div>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                    className="h-8 w-8 rounded-md p-1 ring-1 ring-slate-200"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M3 4.5h14.25M3 9h9.75M3 13.5h9.75m4.5-4.5v12m0 0l-3.75-3.75M17.25 21L21 17.25"
+                    />
+                  </svg>
+                </div>
+
+                {/* <Icon
+                  icon={DotsVerticalIcon}
+                  color="slate"
+                  variant="outline"
+                  tooltip="Click to add company revenue"
+                  size="md"
+                /> */}
               </Flex>
               <CategoryBar
                 values={[22, 21, 14, 21, 22]}
@@ -350,8 +460,7 @@ const DashboardPage = () => {
               />
               <Flex>
                 <Text className="mt-2">
-                  {intensityScale()[1]}{' '}
-                  <span className="text-xs">Kg / tNOK</span>
+                  {intensityScale()[1]} <span className="text-xs">Kg/tNOK</span>
                 </Text>
                 {/* <Text className=" mt-2">
                 value: {intensityScale()[0].toFixed(2)}
@@ -366,14 +475,14 @@ const DashboardPage = () => {
                 {co2eData.map((item) => (
                   <Card
                     key={item.id}
-                    decoration="top"
+                    decoration="left"
                     decorationColor={item.color[0]}
                     className="gap-3 py-3"
                   >
                     <Flex className="w-full">
                       <Flex flexDirection="col" className="gap-2">
                         <Flex alignItems="start">
-                          <Text>{item.title}</Text>
+                          <Text className="font-bold">{item.title}</Text>
                         </Flex>
                         <Flex
                           justifyContent="start"
@@ -382,10 +491,10 @@ const DashboardPage = () => {
                         >
                           <Metric>
                             {Intl.NumberFormat('no-NO', {
-                              maximumFractionDigits: 2,
+                              maximumFractionDigits: 1,
                             }).format(item.co2e)}
                           </Metric>
-                          <Text className="truncate">tons Co2e</Text>
+                          <Text className="truncate">tCo2e</Text>
                         </Flex>
                       </Flex>
                       <DonutChart
@@ -404,20 +513,20 @@ const DashboardPage = () => {
               </Flex>
             </div>
             <Card className="w-full">
-              <Title>Sales</Title>
+              <Title>Emissions per scope</Title>
               <DonutChart
                 className="mt-2"
-                data={cities}
-                category="sales"
-                index="name"
+                data={co2eData}
+                category="percent"
+                index="title"
                 variant="pie"
                 // valueFormatter={valueFormatter}
-                colors={['slate', 'violet', 'indigo', 'rose', 'cyan', 'amber']}
+                colors={['rose', 'sky', 'amber']}
               />
               <Legend
                 className="mt-3"
-                categories={cityNames}
-                colors={['slate', 'violet', 'indigo', 'rose', 'cyan', 'amber']}
+                categories={scopeNames}
+                colors={['rose', 'sky', 'amber']}
               />
             </Card>
           </div>
@@ -446,15 +555,19 @@ const DashboardPage = () => {
                 {dummyData.map((item) => (
                   <Card key={item.id} className="gap-3">
                     <Flex alignItems="start">
-                      <Text>{item.name}</Text>
-                      <Badge color={item.color}>{item.percent}%</Badge>
+                      <Text className="font-bold">{item.name}</Text>
+                      <Badge color={item.color}>{item.percent} %</Badge>
                     </Flex>
                     <Flex
                       justifyContent="start"
                       alignItems="baseline"
                       className="space-x-3 truncate"
                     >
-                      <Metric>{item.co2e}</Metric>
+                      <div className="text-2xl font-semibold">
+                        {Intl.NumberFormat('no-NO', {
+                          maximumFractionDigits: 2,
+                        }).format(item.co2e)}
+                      </div>
                       <Text className="truncate">tons co2e</Text>
                       {/* <Text className="truncate font-medium">
                         {item.metricPrev}
@@ -474,11 +587,11 @@ const DashboardPage = () => {
                 <div className="ml-2 text-xl font-bold">Top 5 suppliers</div>
                 <CardTable />
               </div>
-              <div className="flex flex-col gap-3">
+              <div className="flex flex-col gap-3 xl:mt-2">
                 <div className="ml-2 text-xl font-bold">Energy overview</div>
                 <CardTableSum />
               </div>
-              <Card className="w-full">
+              <Card className="mt-4 w-full">
                 <Title>Energy data</Title>
                 <DonutChart
                   className="mt-2"
@@ -487,20 +600,20 @@ const DashboardPage = () => {
                   index="type"
                   variant="pie"
                   // valueFormatter={valueFormatter}
-                  colors={['indigo', 'rose', 'cyan', 'amber']}
+                  colors={['stone', 'rose', 'teal', 'amber']}
                 />
                 <Legend
                   className="mt-3"
                   categories={energyLabels}
-                  colors={['indigo', 'rose', 'cyan', 'amber']}
+                  colors={['stone', 'rose', 'teal', 'amber']}
                 />
               </Card>
               <div className="flex flex-col gap-3">
-                <div className="ml-2 text-xl font-bold">Co2 added</div>
+                <div className="ml-2 mt-2 text-xl font-bold">Co2 added</div>
                 <Card
                   className="p-5 pb-2"
                   decoration="top"
-                  decorationColor="indigo"
+                  decorationColor="sky"
                 >
                   <div className="-m-5 rounded-t-tremor-default bg-slate-50 shadow">
                     <p className="p-5 text-lg font-bold">Tremor's Hometowns</p>
@@ -520,14 +633,16 @@ const DashboardPage = () => {
 
           <div className="barchart col-span-1 lg:col-span-2">
             <Card>
-              <Title>Newsletter revenue over time (USD)</Title>
-              <AreaChart
-                className="mt-4 h-72"
-                data={chartdata}
-                index="date"
-                categories={['SemiAnalysis', 'The Pragmatic Engineer']}
-                colors={['sky', 'green']}
-                // valueFormatter={dataFormatter}
+              <Title>Emissions by month</Title>
+              <BarChart
+                className="mt-1"
+                data={monthlyData}
+                index="month"
+                categories={['scope 1', 'scope 2', 'scope 3']}
+                colors={['rose', 'sky', 'amber']}
+                stack={true}
+                valueFormatter={format}
+                yAxisWidth={40}
               />
             </Card>
           </div>
