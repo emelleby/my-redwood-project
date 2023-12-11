@@ -52,6 +52,24 @@ const AboutPage = () => {
       <MetaTags title="About" description="About page" />
 
       <h1>The AboutPage</h1>
+      <div className="grid w-96 grid-cols-[24px_1fr_64px] items-center gap-2 ring ring-1">
+        <div className="m-1 h-2 w-2 justify-self-center rounded bg-red-500" />
+        <p className="text-tremor-content">
+          Kategori 1 - Innkjøpte varer og tjenester
+        </p>
+        <p className="justify-self-end font-medium text-tremor-content-emphasis">
+          99.85 %
+        </p>
+        <div className="grid w-96 grid-cols-[16px_1fr_64px] items-center gap-2 ring ring-1">
+          <div className="m-2 h-2 w-2 rounded bg-emerald-500" />
+          <p className="ml-3 text-tremor-content">
+            Category 1 - Innkjøpte varer og tjenester
+          </p>
+          <p className="justify-self-end font-medium text-tremor-content-emphasis">
+            99.85 %
+          </p>
+        </div>
+      </div>
       <div className="grid grid-cols-3 gap-4">
         <div className="flex flex-col rounded-xl border bg-white shadow-md dark:border-gray-700 dark:bg-gray-800 dark:shadow-slate-700/[.7]">
           <img

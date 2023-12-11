@@ -12,13 +12,15 @@ function usePosts() {
       } = await request(
         endpoint,
         gql`
-          query posts {
+          query {
+            posts {
               id
               title
               body
               author
               createdAt
             }
+          }
         `
       )
       return data
